@@ -9,7 +9,21 @@
   </url>
   
   <url>
+    <loc>http://localhost:1313/tags/java/</loc>
+    <lastmod>2020-05-15T14:01:25+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>http://localhost:1313/post/</loc>
+    <lastmod>2020-05-15T14:01:25+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2020-05-15T14:01:25+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -31,12 +45,6 @@
   
   <url>
     <loc>http://localhost:1313/categories/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/tags/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
