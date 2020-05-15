@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Even - A super concise theme for Hugo</title>
-    <link>niuniu1994.github.io/post/</link>
+    <link>http://localhost:1313/post/</link>
     <description>Recent content in Posts on Even - A super concise theme for Hugo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Fri, 15 May 2020 14:01:25 +0200</lastBuildDate>
     
-	<atom:link href="niuniu1994.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>对于针对全局的Filter的设置 防止静态文件被过滤</title>
-      <link>niuniu1994.github.io/post/postjava-filter/</link>
+      <link>http://localhost:1313/post/postjava-filter/</link>
       <pubDate>Fri, 15 May 2020 14:01:25 +0200</pubDate>
       
-      <guid>niuniu1994.github.io/post/postjava-filter/</guid>
+      <guid>http://localhost:1313/post/postjava-filter/</guid>
       <description>因为大多数所编辑的页面都需要中文支持，所以我们在开发Javaweb时一般都会设置一个针对全局的EncodingFilter 1 2 3 4 5 6 7 8 9</description>
     </item>
     
     <item>
       <title>Javaweb maven 项目pom.xml基础配置</title>
-      <link>niuniu1994.github.io/post/java-maven-pom/</link>
+      <link>http://localhost:1313/post/java-maven-pom/</link>
       <pubDate>Fri, 15 May 2020 12:51:08 +0200</pubDate>
       
-      <guid>niuniu1994.github.io/post/java-maven-pom/</guid>
+      <guid>http://localhost:1313/post/java-maven-pom/</guid>
       <description>Javaweb maven 项目pom.xml基础配置 作为刚开是使用maven的新手，在配置maven的dependency时遇到很多问题。因为不同于idea原生的</description>
     </item>
     
