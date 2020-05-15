@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>对于针对全局的Filter的设置 防止静态文件被过滤 - Even - A super concise theme for Hugo</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="kaining" /><meta name="description" content="因为大多数所编辑的页面都需要中文支持，所以我们在开发Javaweb时一般都会设置一个针对全局的EncodingFilter 1 2 3 4 5 6 7 8 9" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.70.0 with theme even" />
+
+
+<link rel="canonical" href="niuniu1994.github.io/post/postjava-filter/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/niuniu1994.github.io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/niuniu1994.github.io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/niuniu1994.github.io/favicon-16x16.png">
+<link rel="manifest" href="/niuniu1994.github.io/manifest.json">
+<link rel="mask-icon" href="/niuniu1994.github.io/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/niuniu1994.github.io/sass/main.min.78f8f17bab244b9ee62ad16480c9584d5fc2db06ae20681d1ca225cefd80767c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="对于针对全局的Filter的设置 防止静态文件被过滤" />
+<meta property="og:description" content="因为大多数所编辑的页面都需要中文支持，所以我们在开发Javaweb时一般都会设置一个针对全局的EncodingFilter 1 2 3 4 5 6 7 8 9" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="niuniu1994.github.io/post/postjava-filter/" />
+<meta property="article:published_time" content="2020-05-15T14:01:25+02:00" />
+<meta property="article:modified_time" content="2020-05-15T14:01:25+02:00" />
+<meta itemprop="name" content="对于针对全局的Filter的设置 防止静态文件被过滤">
+<meta itemprop="description" content="因为大多数所编辑的页面都需要中文支持，所以我们在开发Javaweb时一般都会设置一个针对全局的EncodingFilter 1 2 3 4 5 6 7 8 9">
+<meta itemprop="datePublished" content="2020-05-15T14:01:25&#43;02:00" />
+<meta itemprop="dateModified" content="2020-05-15T14:01:25&#43;02:00" />
+<meta itemprop="wordCount" content="494">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="对于针对全局的Filter的设置 防止静态文件被过滤"/>
+<meta name="twitter:description" content="因为大多数所编辑的页面都需要中文支持，所以我们在开发Javaweb时一般都会设置一个针对全局的EncodingFilter 1 2 3 4 5 6 7 8 9"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/niuniu1994.github.io/" class="logo">Even</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="niuniu1994.github.io/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="niuniu1994.github.io/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="niuniu1994.github.io/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="niuniu1994.github.io/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/niuniu1994.github.io/" class="logo">Even</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="niuniu1994.github.io/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="niuniu1994.github.io/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="niuniu1994.github.io/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="niuniu1994.github.io/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">对于针对全局的Filter的设置 防止静态文件被过滤</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-05-15 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#方案一把动态页面放在特定文件夹">方案一：把动态页面放在特定文件夹</a></li>
+        <li><a href="#方案二创建针对静态文件的filter">方案二：创建针对静态文件的Filter</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>因为大多数所编辑的页面都需要中文支持，所以我们在开发<strong>Javaweb</strong>时一般都会设置一个针对全局的<strong>EncodingFilter</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">EncodingFilter</span> <span class="kd">implements</span> <span class="n">Filter</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doFilter</span><span class="o">(</span><span class="n">ServletRequest</span> <span class="n">servletRequest</span><span class="o">,</span> <span class="n">ServletResponse</span> <span class="n">servletResponse</span><span class="o">,</span> <span class="n">FilterChain</span> <span class="n">filterChain</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">ServletException</span> <span class="o">{</span>
+        <span class="n">HttpServletRequest</span> <span class="n">req</span> <span class="o">=</span> <span class="o">(</span><span class="n">HttpServletRequest</span><span class="o">)</span><span class="n">servletRequest</span><span class="o">;</span>
+        <span class="n">HttpServletResponse</span> <span class="n">resp</span> <span class="o">=</span> <span class="o">(</span><span class="n">HttpServletResponse</span><span class="o">)</span><span class="n">servletResponse</span><span class="o">;</span>
+        <span class="n">req</span><span class="o">.</span><span class="na">setCharacterEncoding</span><span class="o">(</span><span class="s">&#34;utf-8&#34;</span><span class="o">);</span>
+        <span class="n">resp</span><span class="o">.</span><span class="na">setContentType</span><span class="o">(</span><span class="s">&#34;text/html; charset=UTF-8&#34;</span><span class="o">);</span><span class="c1">//会改变js css 等静态文件的ContentType
+</span><span class="c1"></span>        <span class="n">filterChain</span><span class="o">.</span><span class="na">doFilter</span><span class="o">(</span><span class="n">req</span><span class="o">,</span> <span class="n">resp</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这样的结果就是很多静态文件被拦截或者修改，导致网页内容不能正常加载。而通常的解决办法有如下几种。</p>
+<h3 id="方案一把动态页面放在特定文件夹">方案一：把动态页面放在特定文件夹</h3>
+<p>我们只要把动态页面放在一个特定的文件夹，而静态的jsp，png，css等文件也分别放在不同的文件夹中，再通过修改web.xml就可以解决这个问题，这种方法简单通用，一般推荐使用这种。</p>
+<p><img src="/img1.png" alt="image"></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;filter&gt;</span>
+        <span class="nt">&lt;filter-name&gt;</span>InitFilter<span class="nt">&lt;/filter-name&gt;</span>
+        <span class="nt">&lt;filter-class&gt;</span>com.kaining.web.filter.InitFilter<span class="nt">&lt;/filter-class&gt;</span>
+    <span class="nt">&lt;/filter&gt;</span>
+    <span class="nt">&lt;filter-mapping&gt;</span>
+        <span class="nt">&lt;filter-name&gt;</span>InitFilter<span class="nt">&lt;/filter-name&gt;</span>
+        <span class="nt">&lt;url-pattern&gt;</span>/jspPage/*<span class="nt">&lt;/url-pattern&gt;</span>
+    <span class="nt">&lt;/filter-mapping&gt;</span>
+    <span class="nt">&lt;filter&gt;</span>
+        <span class="nt">&lt;filter-name&gt;</span>EncodingFilter<span class="nt">&lt;/filter-name&gt;</span>
+        <span class="nt">&lt;filter-class&gt;</span>com.kaining.web.filter.EncodingFilter<span class="nt">&lt;/filter-class&gt;</span>
+    <span class="nt">&lt;/filter&gt;</span>
+    <span class="nt">&lt;filter-mapping&gt;</span>
+        <span class="nt">&lt;filter-name&gt;</span>EncodingFilter<span class="nt">&lt;/filter-name&gt;</span>
+        <span class="nt">&lt;url-pattern&gt;</span>/jspPage/*<span class="nt">&lt;/url-pattern&gt;</span>
+    <span class="nt">&lt;/filter-mapping&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="方案二创建针对静态文件的filter">方案二：创建针对静态文件的Filter</h3>
+<p>这种方法也可行但是需要注意的地方更多,也比较麻烦。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">doFilter</span><span class="o">(</span><span class="n">ServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">ServletResponse</span> <span class="n">response</span><span class="o">,</span> <span class="n">FilterChain</span> <span class="n">chain</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">ServletException</span> <span class="o">{</span>
+        <span class="n">HttpServletRequest</span> <span class="n">req</span> <span class="o">=</span> <span class="o">(</span><span class="n">HttpServletRequest</span><span class="o">)</span><span class="n">request</span><span class="o">;</span>
+        <span class="n">HttpServletResponse</span> <span class="n">res</span> <span class="o">=</span> <span class="o">(</span><span class="n">HttpServletResponse</span><span class="o">)</span><span class="n">response</span><span class="o">;</span>
+        <span class="n">HttpSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+        <span class="n">LoginUser</span> <span class="n">loginUser</span> <span class="o">=</span> <span class="o">(</span><span class="n">LoginUser</span><span class="o">)</span> <span class="n">session</span><span class="o">.</span><span class="na">getAttribute</span><span class="o">(</span><span class="s">&#34;loginUser&#34;</span><span class="o">);</span>
+        <span class="n">String</span> <span class="n">spath</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="na">getServletPath</span><span class="o">();</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;request.getContextPath()&#34;</span><span class="o">+</span><span class="n">req</span><span class="o">.</span><span class="na">getContextPath</span><span class="o">());</span>
+        <span class="c1">//不需要过滤的url
+</span><span class="c1"></span>        <span class="n">String</span><span class="o">[]</span> <span class="n">urls</span> <span class="o">=</span> <span class="o">{</span><span class="s">&#34;/login&#34;</span><span class="o">,</span><span class="s">&#34;/json&#34;</span><span class="o">,</span><span class="s">&#34;.js&#34;</span><span class="o">,</span><span class="s">&#34;.css&#34;</span><span class="o">,</span><span class="s">&#34;.ico&#34;</span><span class="o">,</span><span class="s">&#34;.jpg&#34;</span><span class="o">,</span><span class="s">&#34;.png&#34;</span><span class="o">};</span>
+        <span class="kt">boolean</span> <span class="n">flag</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">str</span> <span class="o">:</span> <span class="n">urls</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(!</span><span class="n">spath</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">str</span><span class="o">))</span> <span class="o">{</span>
+                <span class="n">flag</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+                <span class="k">break</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">flag</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">loginUser</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">chain</span><span class="o">.</span><span class="na">doFilter</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
+            <span class="o">}</span><span class="k">else</span> <span class="o">{</span>
+                <span class="n">res</span><span class="o">.</span><span class="na">sendRedirect</span><span class="o">(</span><span class="n">req</span><span class="o">.</span><span class="na">getContextPath</span><span class="o">()+</span><span class="s">&#34;/webpage/page/login/login.jsp&#34;</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+            <span class="n">chain</span><span class="o">.</span><span class="na">doFilter</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>  
+       <span class="o">}</span>
+    <span class="o">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">kaining</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-05-15
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        
+        <a class="next" href="niuniu1994.github.io/post/java-maven-pom/">
+            <span class="next-text nav-default">Javaweb maven 项目pom.xml基础配置</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="niuniu1994.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">kaining</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/niuniu1994.github.io/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
