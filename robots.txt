@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://niuniu1994.github.io/sitemap.xml
