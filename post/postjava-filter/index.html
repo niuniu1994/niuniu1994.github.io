@@ -49,7 +49,7 @@
 <meta itemprop="description" content="因为大多数所编辑的页面都需要中文支持，所以我们在开发Javaweb时一般都会设置一个针对全局的EncodingFilter 1 2 3 4 5 6 7 8 9">
 <meta itemprop="datePublished" content="2020-05-15T14:01:25&#43;02:00" />
 <meta itemprop="dateModified" content="2020-05-15T14:01:25&#43;02:00" />
-<meta itemprop="wordCount" content="494">
+<meta itemprop="wordCount" content="713">
 
 
 
@@ -192,6 +192,15 @@
 </span><span class="lnt">14
 </span><span class="lnt">15
 </span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;filter&gt;</span>
@@ -202,13 +211,22 @@
         <span class="nt">&lt;filter-name&gt;</span>InitFilter<span class="nt">&lt;/filter-name&gt;</span>
         <span class="nt">&lt;url-pattern&gt;</span>/jspPage/*<span class="nt">&lt;/url-pattern&gt;</span>
     <span class="nt">&lt;/filter-mapping&gt;</span>
+<span class="nt">&lt;filter-mapping&gt;</span>
+        <span class="nt">&lt;filter-name&gt;</span>InitFilter<span class="nt">&lt;/filter-name&gt;</span>
+        <span class="nt">&lt;url-pattern&gt;</span>/api/*<span class="nt">&lt;/url-pattern&gt;</span>//所有servlet的url前加&#39;&#39;api/&#39;&#39;这样来设置对servlet的过滤
+    <span class="nt">&lt;/filter-mapping&gt;</span>
     <span class="nt">&lt;filter&gt;</span>
         <span class="nt">&lt;filter-name&gt;</span>EncodingFilter<span class="nt">&lt;/filter-name&gt;</span>
         <span class="nt">&lt;filter-class&gt;</span>com.kaining.web.filter.EncodingFilter<span class="nt">&lt;/filter-class&gt;</span>
     <span class="nt">&lt;/filter&gt;</span>
+
     <span class="nt">&lt;filter-mapping&gt;</span>
         <span class="nt">&lt;filter-name&gt;</span>EncodingFilter<span class="nt">&lt;/filter-name&gt;</span>
         <span class="nt">&lt;url-pattern&gt;</span>/jspPage/*<span class="nt">&lt;/url-pattern&gt;</span>
+    <span class="nt">&lt;/filter-mapping&gt;</span>
+	<span class="nt">&lt;filter-mapping&gt;</span>
+        <span class="nt">&lt;filter-name&gt;</span>EncodingFilter<span class="nt">&lt;/filter-name&gt;</span>
+        <span class="nt">&lt;url-pattern&gt;</span>/api/*<span class="nt">&lt;/url-pattern&gt;</span>//所有servlet的url前加&#39;&#39;api/&#39;&#39;这样来设置对servlet的过滤
     <span class="nt">&lt;/filter-mapping&gt;</span>
 </code></pre></td></tr></table>
 </div>
